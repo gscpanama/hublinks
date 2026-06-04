@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>GSC Panama City — Links</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black:   #0A0A0F;
+      --blue:    #0053F1;
+      --sky:     #38B6FF;
+      --indigo:  #2F5CB2;
+      --yellow:  #FFDE59;
+      --orange:  #EBA039;
+      --white:   #FFFAF1;
+      --steel:   #6B7A99;
+      --surface: #12141C;
+      --border:  rgba(255,255,255,.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 400;
+      min-height: 100vh;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* ──────────────────────────────
+       HEADER
+    ────────────────────────────── */
+    header {
+      background: var(--black);
+      padding: env(safe-area-inset-top, 0) 0 0;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      padding: 1rem 1.1rem .9rem;
+      display: flex;
+      align-items: center;
+      gap: .85rem;
+    }
+
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+    }
+
+    .header-text h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 1.15rem;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      line-height: 1.1;
+      color: var(--white);
+    }
+
+    .header-text p {
+      font-size: .72rem;
+      color: var(--sky);
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-top: .1rem;
+    }
+
+    /* ──────────────────────────────
+       SEARCH
+    ────────────────────────────── */
+    .search-bar {
+      padding: 0 1.1rem .9rem;
+      position: relative;
+    }
+
+    .search-bar input {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: .72rem 1rem .72rem 2.6rem;
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-size: .92rem;
+      outline: none;
+      transition: border-color .2s;
+      -webkit-appearance: none;
+    }
+
+    .search-bar input::placeholder { color: var(--steel); }
+    .search-bar input:focus { border-color: var(--blue); }
+
+    .search-icon {
+      position: absolute;
+      left: 1.85rem;
+      top: 50%;
+      transform: translateY(-60%);
+      color: var(--steel);
+      pointer-events: none;
+    }
+
+    /* ──────────────────────────────
+       CATEGORY COUNT PILL
+    ────────────────────────────── */
+    .count-bar {
+      padding: .5rem 1.1rem .7rem;
+      display: flex;
+      gap: .5rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .count-bar::-webkit-scrollbar { display: none; }
+
+    .cat-pill {
+      flex-shrink: 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: .28rem .75rem;
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--steel);
+      cursor: pointer;
+      transition: all .2s;
+      white-space: nowrap;
+    }
+
+    .cat-pill.active,
+    .cat-pill:hover {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: var(--white);
+    }
+
+    /* ──────────────────────────────
+       MAIN
+    ────────────────────────────── */
+    main {
+      padding: .5rem 0 6rem;
+    }
+
+    /* ──────────────────────────────
+       ACCORDION SECTION
+    ────────────────────────────── */
+    .section {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-trigger {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 1rem 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: .85rem;
+      cursor: pointer;
+      text-align: left;
+      -webkit-tap-highlight-color: transparent;
+      transition: background .15s;
+    }
+
+    .section-trigger:active { background: rgba(255,255,255,.04); }
+
+    .sec-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      display: grid;
+      place-items: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .sec-meta {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .sec-label {
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--steel);
+      margin-bottom: .1rem;
+    }
+
+    .sec-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .sec-count {
+      font-size: .7rem;
+      color: var(--steel);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: .15rem .5rem;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .sec-chevron {
+      color: var(--steel);
+      flex-shrink: 0;
+      transition: transform .25s cubic-bezier(.4,0,.2,1);
+    }
+
+    .section.open .sec-chevron {
+      transform: rotate(180deg);
+    }
+
+    /* ──────────────────────────────
+       SECTION BODY
+    ────────────────────────────── */
+    .section-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s cubic-bezier(.4,0,.2,1);
+    }
+
+    .section.open .section-body {
+      max-height: 9999px;
+    }
+
+    .links-list {
+      padding: .3rem .9rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: .45rem;
+    }
+
+    /* ──────────────────────────────
+       LINK CARD
+    ────────────────────────────── */
+    .lcard {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: .95rem 1rem;
+      text-decoration: none;
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      transition: background .15s, border-color .18s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .lcard:active {
+      background: rgba(0,83,241,.12);
+      border-color: rgba(0,83,241,.4);
+    }
+
+    .lcard-body { flex: 1; min-width: 0; }
+
+    .lcard-name {
+      font-weight: 600;
+      font-size: .9rem;
+      color: var(--white);
+      line-height: 1.35;
+      margin-bottom: .25rem;
+    }
+
+    .lcard-desc {
+      font-size: .78rem;
+      color: var(--steel);
+      font-weight: 300;
+      line-height: 1.45;
+      margin-bottom: .4rem;
+    }
+
+    .lcard-tag {
+      display: inline-block;
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      padding: .18rem .5rem;
+      border-radius: 100px;
+    }
+
+    .tag-doc    { background: rgba(0,83,241,.25);   color: #7EB3FF; border: 1px solid rgba(0,83,241,.45); }
+    .tag-drive  { background: rgba(56,182,255,.15); color: var(--sky);  border: 1px solid rgba(56,182,255,.35); }
+    .tag-form   { background: rgba(255,222,89,.12); color: var(--yellow); border: 1px solid rgba(255,222,89,.3); }
+    .tag-dash   { background: rgba(235,160,57,.15); color: var(--orange); border: 1px solid rgba(235,160,57,.35); }
+    .tag-link   { background: rgba(47,92,178,.25);  color: #A8BFFF; border: 1px solid rgba(47,92,178,.5); }
+    .tag-pdf    { background: rgba(255,222,89,.15); color: var(--yellow); border: 1px solid rgba(255,222,89,.3); }
+    .tag-star   { background: rgba(235,160,57,.25); color: var(--orange); border: 1px solid rgba(235,160,57,.5); }
+
+    .lcard-arrow {
+      color: var(--steel);
+      flex-shrink: 0;
+      margin-top: .15rem;
+    }
+
+    /* ──────────────────────────────
+       NO RESULTS
+    ────────────────────────────── */
+    #no-results {
+      display: none;
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--steel);
+      font-size: .9rem;
+    }
+
+    /* ──────────────────────────────
+       FOOTER
+    ────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem env(safe-area-inset-bottom, 1rem);
+      color: var(--steel);
+      font-size: .72rem;
+      border-top: 1px solid var(--border);
+    }
+
+    footer strong { color: var(--sky); }
+
+    /* hidden by search */
+    .lcard.hidden { display: none; }
+    .section.search-hidden { display: none; }
+
+    /* ──────────────────────────────
+       DESKTOP tweak
+    ────────────────────────────── */
+    @media (min-width: 640px) {
+      .links-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: .6rem;
+        padding: .3rem 1.1rem 1.1rem;
+      }
+      .header-text h1 { font-size: 1.3rem; }
+    }
+
+    @media (min-width: 960px) {
+      body { max-width: 760px; margin: 0 auto; }
+      .links-list { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     HEADER
+════════════════════════════════════ -->
+<header>
+  <div class="header-inner">
+    <!-- GSC logo SVG (simplified skyline ring) -->
+    <svg class="logo-mark" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g>
+        <!-- ring segments -->
+        <path d="M40 6 A34 34 0 0 1 68.4 22" stroke="#0053F1" stroke-width="10" stroke-linecap="butt" fill="none"/>
+        <path d="M68.4 22 A34 34 0 0 1 74 40" stroke="#38B6FF" stroke-width="10" stroke-linecap="butt" fill="none"/>
+        <path d="M74 40 A34 34 0 0 1 68.4 58" stroke="#0053F1" stroke-width="10" stroke-linecap="butt" fill="none"/>
+        <path d="M68.4 58 A34 34 0 0 1 54 71.4" stroke="#38B6FF" stroke-width="10" stroke-linecap="butt" fill="none"/>
+        <path d="M54 71.4 A34 34 0 0 1 26 71.4" stroke="#0053F1" stroke-width="10" stroke-linecap="butt" fill="none"/>
+        <path d="M26 71.4 A34 34 0 0 1 11.6 58" stroke="#38B6FF" stroke-width="10" stroke-linecap="butt" fill="none"/>
+        <path d="M11.6 58 A34 34 0 0 1 6 40" stroke="#0053F1" stroke-width="10" stroke-linecap="butt" fill="none"/>
+        <path d="M6 40 A34 34 0 0 1 11.6 22" stroke="#38B6FF" stroke-width="10" stroke-linecap="butt" fill="none"/>
+        <path d="M11.6 22 A34 34 0 0 1 40 6" stroke="#0053F1" stroke-width="10" stroke-linecap="butt" fill="none"/>
+      </g>
+    </svg>
+    <div class="header-text">
+      <h1>Global Shapers</h1>
+      <p>Panama City Hub · Repositorio</p>
+    </div>
+  </div>
+  <div class="search-bar">
+    <svg class="search-icon" width="15" height="15" viewBox="0 0 16 16" fill="none">
+      <circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    <input type="search" id="search" placeholder="Buscar recurso…" autocomplete="off" autocorrect="off" />
+  </div>
+</header>
+
+<!-- ══════════════════════════════════
+     MAIN
+════════════════════════════════════ -->
+<main id="main">
+
+  <!-- ─── 1. DOCUMENTOS LOCALES DEL HUB ─── -->
+  <div class="section open" data-section="local">
+    <button class="section-trigger" aria-expanded="true">
+      <div class="sec-icon" style="background:rgba(235,160,57,.15);">🏙️</div>
+      <div class="sec-meta">
+        <div class="sec-label">Hub Panama City</div>
+        <div class="sec-title">Documentos Locales</div>
+      </div>
+      <span class="sec-count">2</span>
+      <svg class="sec-chevron" width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path d="M4.5 7L9 11.5L13.5 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="section-body">
+      <div class="links-list">
+
+        <a class="lcard" href="https://drive.google.com/file/d/1rf_QpfhJmF-kFQUoAcp3XmCkQZ4Xtl7g/view?usp=sharing" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Charter Local del Hub ⭐</div>
+            <div class="lcard-desc">Documento fundacional del Panama City Hub.</div>
+            <span class="lcard-tag tag-star">PDF · Drive</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://drive.google.com/drive/folders/16A8Mc0uX-dDAV59ehVu3vKzPaKoRBzrJ?usp=sharing" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Carpeta de Organigramas</div>
+            <div class="lcard-desc">Estructura organizacional del hub.</div>
+            <span class="lcard-tag tag-drive">Drive</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 2. PROYECTOS ACTIVOS ─── -->
+  <div class="section open" data-section="proyectos">
+    <button class="section-trigger" aria-expanded="true">
+      <div class="sec-icon" style="background:rgba(255,222,89,.12);">🚀</div>
+      <div class="sec-meta">
+        <div class="sec-label">Iniciativas</div>
+        <div class="sec-title">Proyectos Activos</div>
+      </div>
+      <span class="sec-count">2</span>
+      <svg class="sec-chevron" width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path d="M4.5 7L9 11.5L13.5 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="section-body">
+      <div class="links-list">
+
+        <a class="lcard" href="https://drive.google.com/drive/folders/1TXV6BN9B_Qiza2CyN85MMvGNZxoBzP_b?usp=sharing" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Buen Pelao</div>
+            <div class="lcard-desc">Drive del proyecto Buen Pelao.</div>
+            <span class="lcard-tag tag-drive">Drive</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://drive.google.com/drive/folders/1aQM8OEtIkurXtquVXcDtKoURUeah8bSO?usp=sharing" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Cultura 0</div>
+            <div class="lcard-desc">Drive del proyecto Cultura 0.</div>
+            <span class="lcard-tag tag-drive">Drive</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 3. ESTATUTO Y GOBERNANZA ─── -->
+  <div class="section" data-section="estatuto">
+    <button class="section-trigger" aria-expanded="false">
+      <div class="sec-icon" style="background:rgba(0,83,241,.2);">📋</div>
+      <div class="sec-meta">
+        <div class="sec-label">Gobernanza Global</div>
+        <div class="sec-title">Estatuto y Directrices</div>
+      </div>
+      <span class="sec-count">17</span>
+      <svg class="sec-chevron" width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path d="M4.5 7L9 11.5L13.5 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="section-body">
+      <div class="links-list">
+
+        <a class="lcard" href="https://new.express.adobe.com/webpage/vnOKwPijAc0by" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Directrices de la Comunidad GSC</div>
+            <div class="lcard-desc">Marco general de la Comunidad Global Shapers a nivel mundial.</div>
+            <span class="lcard-tag tag-doc">Política</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://new.express.adobe.com/webpage/EOWbcipyaKrMH" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Estatuto de la Comunidad GSC</div>
+            <div class="lcard-desc">El manual completo de GSC.</div>
+            <span class="lcard-tag tag-doc">Estatuto</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://express.adobe.com/page/UgXiA1figeu38/" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Valores de GSC</div>
+            <div class="lcard-desc">Principios rectores para cada Shaper.</div>
+            <span class="lcard-tag tag-doc">Valores</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://new.express.adobe.com/webpage/vnOKwPijAc0by" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Guía de Incorporación</div>
+            <div class="lcard-desc">Familiarización con la Comunidad de Global Shapers.</div>
+            <span class="lcard-tag tag-doc">Onboarding</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://express.adobe.com/page/DNiDfjNuZoEPO/" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Código de Conducta</div>
+            <div class="lcard-desc">Marco para determinar la conducta apropiada frente a la inapropiada.</div>
+            <span class="lcard-tag tag-doc">Conducta</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://express.adobe.com/page/vr0EgGdCvpxmy/" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Política contra el Acoso</div>
+            <div class="lcard-desc">¿Qué constituye acoso y cómo lo abordamos como comunidad?</div>
+            <span class="lcard-tag tag-doc">Política</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://express.adobe.com/page/DveXRiNgBGvwl/" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Política del Consejo Asesor</div>
+            <div class="lcard-desc">Áreas de acción, descripciones, mandatos e información de contacto.</div>
+            <span class="lcard-tag tag-doc">Política</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://new.express.adobe.com/webpage/goPkl514ebdAH" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Política de Community Champions</div>
+            <div class="lcard-desc">Misión y mandato de Community Champions.</div>
+            <span class="lcard-tag tag-doc">Política</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://spark.adobe.com/page/BD8tkUwk51IFF/" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Carta de la Red de Alumni</div>
+            <div class="lcard-desc">¿Quiénes son los Alumni de GSC y a qué tienen acceso?</div>
+            <span class="lcard-tag tag-doc">Alumni</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://new.express.adobe.com/webpage/eWXVU8gIyOMBT" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Plantear una Inquietud</div>
+            <div class="lcard-desc">¿Cuándo se escala la resolución de conflictos al Consejo Asesor de Gobernanza?</div>
+            <span class="lcard-tag tag-doc">Conflictos</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://express.adobe.com/page/BxHwRKYCDrfN4/" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Política de Steering Committee</div>
+            <div class="lcard-desc">Membresía, misión y mandato.</div>
+            <span class="lcard-tag tag-doc">Política</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://new.express.adobe.com/webpage/42sNp7zGrTLE0" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Política de Curadores</div>
+            <div class="lcard-desc">Cualificaciones, misión y mandato.</div>
+            <span class="lcard-tag tag-doc">Política</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://express.adobe.com/page/N7v40sLPhXjpM/" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Política de Impact Officers</div>
+            <div class="lcard-desc">Misión, mandato y preguntas frecuentes.</div>
+            <span class="lcard-tag tag-doc">Política</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://new.express.adobe.com/webpage/fXv9rlBiLNyd5" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Política de Membresía</div>
+            <div class="lcard-desc">Condiciones y proceso de membresía en el hub.</div>
+            <span class="lcard-tag tag-doc">Membresía</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://new.express.adobe.com/webpage/Wcra41gLRu7E9" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Política de Alianzas y Recaudación</div>
+            <div class="lcard-desc">Marco para alianzas estratégicas y recaudación de fondos.</div>
+            <span class="lcard-tag tag-doc">Alianzas</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://express.adobe.com/page/r6RSxlA7T42IT/" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Modelo de Guidelines del Hub</div>
+            <div class="lcard-desc">Directrices de operación interna del hub.</div>
+            <span class="lcard-tag tag-doc">Política</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://new.express.adobe.com/webpage/JNZdU7q8YRFey" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Cómo Comenzar un Nuevo Hub</div>
+            <div class="lcard-desc">Pasos y requisitos para fundar un nuevo hub.</div>
+            <span class="lcard-tag tag-doc">Política</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 4. OPERACIONES ─── -->
+  <div class="section" data-section="operaciones">
+    <button class="section-trigger" aria-expanded="false">
+      <div class="sec-icon" style="background:rgba(56,182,255,.15);">⚡</div>
+      <div class="sec-meta">
+        <div class="sec-label">Operaciones</div>
+        <div class="sec-title">Actividades y Ejecución</div>
+      </div>
+      <span class="sec-count">5</span>
+      <svg class="sec-chevron" width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path d="M4.5 7L9 11.5L13.5 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="section-body">
+      <div class="links-list">
+
+        <a class="lcard" href="https://express.adobe.com/page/TmHkMr9yCau69/" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Guía de Eventos</div>
+            <div class="lcard-desc">Cómo ejecutar un Shape y actividades del Hub.</div>
+            <span class="lcard-tag tag-doc">Eventos</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://express.adobe.com/page/hL2YkZLXLN7m5/" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Directrices Electorales</div>
+            <div class="lcard-desc">Cómo llevar a cabo las elecciones de curadores.</div>
+            <span class="lcard-tag tag-doc">Elecciones</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://express.adobe.com/page/GuGe1pGvZxIjU/" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Desarrollo y Crecimiento de Hub</div>
+            <div class="lcard-desc">Cómo iniciar un hub desde cero.</div>
+            <span class="lcard-tag tag-doc">Crecimiento</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://new.express.adobe.com/webpage/Hv4E5tSqh1ZGo" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Guía de Impacto y Proyectos</div>
+            <div class="lcard-desc">Metodología para diseñar y ejecutar proyectos de impacto.</div>
+            <span class="lcard-tag tag-doc">Proyectos</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://new.express.adobe.com/webpage/uiSfUK2RXmIPj" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Directrices de la Marca</div>
+            <div class="lcard-desc">Uso correcto de la identidad visual de Global Shapers.</div>
+            <span class="lcard-tag tag-doc">Marca</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 5. COMITÉS ─── -->
+  <div class="section" data-section="comites">
+    <button class="section-trigger" aria-expanded="false">
+      <div class="sec-icon" style="background:rgba(47,92,178,.25);">🗂️</div>
+      <div class="sec-meta">
+        <div class="sec-label">Comités</div>
+        <div class="sec-title">Drives y Recursos</div>
+      </div>
+      <span class="sec-count">5</span>
+      <svg class="sec-chevron" width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path d="M4.5 7L9 11.5L13.5 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="section-body">
+      <div class="links-list">
+
+        <a class="lcard" href="https://drive.google.com/drive/folders/1OramD9dCcrXankgBMqoUsSblxUVpTEPa?usp=sharing" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Drive de Comités (General)</div>
+            <div class="lcard-desc">Carpeta principal con recursos de todos los comités.</div>
+            <span class="lcard-tag tag-drive">Drive</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://drive.google.com/drive/folders/1spAn1-SomPVyNTJiO_FHIXMHVy9diqp0?usp=sharing" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Drive de Flujogramas de Comités</div>
+            <div class="lcard-desc">Diagramas de flujo de procesos por comité.</div>
+            <span class="lcard-tag tag-drive">Drive</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://drive.google.com/drive/folders/1lBOEVE3qOtz5gbhC_7-FdtxWZ7D5GFny" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Repositorio Comité de Alianzas</div>
+            <div class="lcard-desc">Documentos y recursos del comité de alianzas estratégicas.</div>
+            <span class="lcard-tag tag-drive">Drive</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://linktr.ee/GSC_Relaciones_Publicas_PA" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Linktree · Relaciones Públicas</div>
+            <div class="lcard-desc">Hub de links del comité de Relaciones Públicas.</div>
+            <span class="lcard-tag tag-link">Linktree</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://linktr.ee/GSCTechpty" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Linktree · Tecnología</div>
+            <div class="lcard-desc">Recursos y elementos del comité de tecnología.</div>
+            <span class="lcard-tag tag-link">Linktree</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 6. FINANZAS ─── -->
+  <div class="section" data-section="finanzas">
+    <button class="section-trigger" aria-expanded="false">
+      <div class="sec-icon" style="background:rgba(255,222,89,.1);">💰</div>
+      <div class="sec-meta">
+        <div class="sec-label">Finanzas</div>
+        <div class="sec-title">Drive, Forms y Dashboard</div>
+      </div>
+      <span class="sec-count">5</span>
+      <svg class="sec-chevron" width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path d="M4.5 7L9 11.5L13.5 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="section-body">
+      <div class="links-list">
+
+        <a class="lcard" href="https://drive.google.com/drive/folders/1m4iEQ7KOdVSU19XsN7ajNw-VZk5p_Jt4" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Drive · Asuntos Económicos</div>
+            <div class="lcard-desc">Carpeta principal de finanzas y asuntos económicos del hub.</div>
+            <span class="lcard-tag tag-drive">Drive</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://lookerstudio.google.com/reporting/d0dccc28-2229-46bf-92ff-89fc886fa6d3" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Dashboard de Finanzas</div>
+            <div class="lcard-desc">Visualización financiera en tiempo real · Looker Studio.</div>
+            <span class="lcard-tag tag-dash">Dashboard</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://docs.google.com/forms/d/1xWDnJHdC6IE1W8L6a-hqUbSKCulM6-8ixjX8d9RxxPA/edit?usp=drivesdk" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Form · Cuota de Sostenibilidad</div>
+            <div class="lcard-desc">Formulario de pago de cuota de sostenibilidad.</div>
+            <span class="lcard-tag tag-form">Formulario</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://docs.google.com/forms/d/e/1FAIpQLSfUEu3Ul50Q657ghoQfWLDMFVLWsFW5xtLiA45i89fqnfl5Vg/viewform" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Form · Solicitud de Reembolsos</div>
+            <div class="lcard-desc">Formulario para solicitar reembolsos al hub.</div>
+            <span class="lcard-tag tag-form">Formulario</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <a class="lcard" href="https://docs.google.com/forms/d/1X2aT4L3Z3W_QW4v8gMGmPlkUZitSQ5CR8k7ZHkPz0ZI/edit?edit_requested=true" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Form · Pago a Proveedores</div>
+            <div class="lcard-desc">Formulario para tramitar pagos a proveedores externos.</div>
+            <span class="lcard-tag tag-form">Formulario</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 7. COMUNIDAD ─── -->
+  <div class="section" data-section="comunidad">
+    <button class="section-trigger" aria-expanded="false">
+      <div class="sec-icon" style="background:rgba(56,182,255,.12);">🤝</div>
+      <div class="sec-meta">
+        <div class="sec-label">Comunidad</div>
+        <div class="sec-title">Shapers y Aliados</div>
+      </div>
+      <span class="sec-count">1</span>
+      <svg class="sec-chevron" width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path d="M4.5 7L9 11.5L13.5 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="section-body">
+      <div class="links-list">
+
+        <a class="lcard" href="https://forms.gle/H5nm8Zfx7cxUwiTSA" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Form · Ser Shaper Friend</div>
+            <div class="lcard-desc">Formulario para unirse a la red de aliados del hub como Shaper Friend.</div>
+            <span class="lcard-tag tag-form">Formulario</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="no-results">
+    <p>Sin resultados para ese término.</p>
+  </div>
+
+</main>
+
+<footer>
+  <strong>Global Shapers Panama City Hub</strong> · Repositorio de Links · 2026
+</footer>
+
+<script>
+  // ── Accordion ──
+  document.querySelectorAll('.section-trigger').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const sec = btn.closest('.section');
+      const isOpen = sec.classList.contains('open');
+      sec.classList.toggle('open', !isOpen);
+      btn.setAttribute('aria-expanded', !isOpen);
+    });
+  });
+
+  // ── Search ──
+  const input = document.getElementById('search');
+  const noResults = document.getElementById('no-results');
+
+  input.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    let total = 0;
+
+    document.querySelectorAll('.section').forEach(sec => {
+      const cards = sec.querySelectorAll('.lcard');
+      let vis = 0;
+
+      cards.forEach(card => {
+        const match = !q || card.textContent.toLowerCase().includes(q);
+        card.classList.toggle('hidden', !match);
+        if (match) vis++;
+      });
+
+      total += vis;
+
+      if (q) {
+        sec.classList.toggle('search-hidden', vis === 0);
+        if (vis > 0) sec.classList.add('open');
+      } else {
+        sec.classList.remove('search-hidden');
+      }
+    });
+
+    noResults.style.display = total === 0 && q ? 'block' : 'none';
+  });
+</script>
+
+</body>
+</html>
