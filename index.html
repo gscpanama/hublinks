@@ -272,6 +272,11 @@
       border-color: rgba(0,83,241,.4);
     }
 
+    .lcard.is-placeholder {
+      cursor: default;
+      opacity: .78;
+    }
+
     .lcard-body { flex: 1; min-width: 0; }
 
     .lcard-name {
@@ -307,6 +312,7 @@
     .tag-link   { background: rgba(47,92,178,.25);  color: #A8BFFF; border: 1px solid rgba(47,92,178,.5); }
     .tag-pdf    { background: rgba(255,222,89,.15); color: var(--yellow); border: 1px solid rgba(255,222,89,.3); }
     .tag-star   { background: rgba(235,160,57,.25); color: var(--orange); border: 1px solid rgba(235,160,57,.5); }
+    .tag-pending{ background: rgba(107,122,153,.18); color: var(--steel); border: 1px solid rgba(107,122,153,.4); }
 
     .lcard-arrow {
       color: var(--steel);
@@ -523,8 +529,10 @@
 
         </a>
 
+      </div>
+    </div>
   </div>
-      </main>
+
   <!-- ─── 2. FORMS Y DASHBOARD ─── -->
   <div class="section" data-section="finanzas">
     <button class="section-trigger" aria-expanded="false">
@@ -811,6 +819,79 @@
             <div class="lcard-name">Identidad Visual del Hub</div>
             <div class="lcard-desc">Manual de identidad visual del Panama City Hub · Canva.</div>
             <span class="lcard-tag tag-link">Canva</span>
+          </div>
+          <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 5. PROYECTOS DE IMPACTO ─── -->
+  <div class="section" data-section="proyectos">
+    <button class="section-trigger" aria-expanded="false">
+      <div class="sec-icon" style="background:rgba(56,182,255,.15);">🌱</div>
+      <div class="sec-meta">
+        <div class="sec-label">Impacto Social</div>
+        <div class="sec-title">Proyectos de Impacto</div>
+      </div>
+      <span class="sec-count">3</span>
+      <svg class="sec-chevron" width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path d="M4.5 7L9 11.5L13.5 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="section-body">
+      <div class="links-list">
+
+        <div class="lcard is-placeholder">
+          <div class="lcard-body">
+            <div class="lcard-name">Buen Pela'o</div>
+            <div class="lcard-desc">Educación para la paz a través del arte y el deporte en San Miguelito.</div>
+            <span class="lcard-tag tag-pending">Próximamente</span>
+          </div>
+        </div>
+
+        <div class="lcard is-placeholder">
+          <div class="lcard-body">
+            <div class="lcard-name">Futuro Panamá</div>
+            <div class="lcard-desc">Educación financiera y liderazgo juvenil.</div>
+            <span class="lcard-tag tag-pending">Próximamente</span>
+          </div>
+        </div>
+
+        <div class="lcard is-placeholder">
+          <div class="lcard-body">
+            <div class="lcard-name">Cultura O</div>
+            <div class="lcard-desc">Manejo responsable de residuos.</div>
+            <span class="lcard-tag tag-pending">Próximamente</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 6. DOCUMENTOS INTERNOS DE CURADURÍA ─── -->
+  <div class="section" data-section="curaduria">
+    <button class="section-trigger" aria-expanded="false">
+      <div class="sec-icon" style="background:rgba(235,160,57,.15);">🗂️</div>
+      <div class="sec-meta">
+        <div class="sec-label">Curaduría 2026-2027</div>
+        <div class="sec-title">Documentos Internos</div>
+      </div>
+      <span class="sec-count">1</span>
+      <svg class="sec-chevron" width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path d="M4.5 7L9 11.5L13.5 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="section-body">
+      <div class="links-list">
+
+        <a class="lcard" href="https://drive.google.com/drive/u/0/folders/0ALoamTbzlFWCUk9PVA" target="_blank" rel="noopener">
+          <div class="lcard-body">
+            <div class="lcard-name">Carpeta de Curaduría</div>
+            <div class="lcard-desc">Actas, minutas y plantillas de la Curaduría 2026-2027.</div>
+            <span class="lcard-tag tag-drive">Drive</span>
           </div>
           <svg class="lcard-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
